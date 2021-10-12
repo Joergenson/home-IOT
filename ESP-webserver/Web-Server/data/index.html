@@ -1,0 +1,41 @@
+﻿<html>
+  <head>
+    <title>ESP8266 Web Server</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  </head>
+  <body>
+    <h1>ESP8266 Web Server</h1>
+    <p>Server state<strong id="state"> Off </strong></p>
+    <label class="switch">
+      <input id="serverToggle" type="checkbox" onclick="toggleServer()" />
+      <span class="slider"></span>
+    </label>
+  </body>
+  <script>
+    setInterval(function () {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("state").innerHTML = " " + this.responseText;
+          if (this.responseText == "Running") {
+            document.getElementById("serverToggle").checked = true;
+            document.getElementById("serverToggle").disabled = true;
+          } else if (this.responseText == "Off") {
+            document.getElementById("serverToggle").checked = false;
+            document.getElementById("serverToggle").disabled = false;
+          }
+        }
+      };
+      xhttp.open("GET", "/server", true);
+      xhttp.send();
+    }, 60000);
+    function toggleServer() {
+      document.getElementById("state").innerHTML = " Starting";
+      document.getElementById("serverToggle").disabled = true;
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "/toggle_server", true);
+      xhttp.send();
+    }
+  </script>
+</html>
