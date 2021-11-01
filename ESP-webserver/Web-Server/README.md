@@ -51,6 +51,8 @@ IoT features to items without them.
 * [HTML]()
 * [CSS]()
 * [Arduino IDE](https://www.arduino.cc/en/Guide)
+* [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer#installation)
+* [ESPAsyncTCP](https://github.com/me-no-dev/ESPAsyncTCP)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
